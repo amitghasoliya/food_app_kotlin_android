@@ -51,6 +51,9 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
                 itemQuantities[position]--
                 binding.cartQuantity.text = itemQuantities[position].toString()
             }
+            else{
+                deleteItem(position)
+            }
         }
         private fun increaseQuan(position: Int){
             if (itemQuantities[position]<10){
@@ -59,7 +62,7 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
             }
         }
         private fun deleteItem(position: Int){
-            if (itemQuantities[position]>1){
+            if (itemQuantities[position]>=1){
                 cartItems.removeAt(position)
                 cartImage.removeAt(position)
                 cartItemPrice.removeAt(position)

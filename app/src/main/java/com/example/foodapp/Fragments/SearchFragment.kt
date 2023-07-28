@@ -14,9 +14,9 @@ import com.example.foodapp.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: MenuAdapter
-    private val originalMenuFoodName = listOf("Burger","Sandwich","momo","Burger","Sandwich","momo")
-    private val originalMenuItemPrice = listOf("20","40","60","20","40","60")
-    private val originalMenuImage = listOf(R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,R.drawable.ic_launcher_background,R.drawable.ic_launcher_background, R.drawable.ic_launcher_background,R.drawable.ic_launcher_background)
+    private val originalMenuFoodName = listOf("Burger","Sandwich","Momo","Chowmein","Pizza","Shake")
+    private val originalMenuItemPrice = listOf("₹ 20","₹ 40","₹ 60","₹ 20","₹ 40","₹ 60")
+    private val originalMenuImage = listOf(R.drawable.burger, R.drawable.sandwich,R.drawable.momos,R.drawable.chowmein, R.drawable.pizza,R.drawable.shake)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -29,7 +29,7 @@ private val filteredMenuFoodName = mutableListOf<String>()
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater,container,false)
-        adapter = MenuAdapter(filteredMenuFoodName,filteredMenuFoodPrice,filteredMenuFoodImage)
+        adapter = MenuAdapter(filteredMenuFoodName,filteredMenuFoodPrice,filteredMenuFoodImage,requireContext())
         binding.recyclerSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerSearch.adapter = adapter
 

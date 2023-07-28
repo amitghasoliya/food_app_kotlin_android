@@ -13,9 +13,27 @@
         android:theme="@style/Theme.FoodApp"
         tools:targetApi="31">
         <activity
+            android:name=".detail_activity"
+            android:exported="false" />
+        <activity
+            android:name=".notification_activity"
+            android:exported="false" />
+        <activity
+            android:name=".menu"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".congrats_activity"
+            android:exported="false" />
+        <activity
+            android:name=".pay_out"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ChooseLocationActivity"
             android:exported="false" />

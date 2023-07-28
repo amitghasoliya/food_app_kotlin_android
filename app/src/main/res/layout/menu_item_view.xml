@@ -5,13 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        android:outlineSpotShadowColor="#FFB0B0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,12 +26,9 @@
 
             <ImageView
                 android:id="@+id/menuFoodImage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:scaleType="centerCrop"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -34,10 +38,12 @@
                 android:id="@+id/foodNameMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginStart="47dp"
+                android:layout_marginStart="20dp"
                 android:text="Dish Name"
-                app:layout_constraintBottom_toBottomOf="@+id/menuFoodImage"
+                android:textColor="@color/black"
+                android:layout_marginTop="30dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/menuFoodImage"
                 app:layout_constraintTop_toTopOf="@+id/menuFoodImage" />
 
@@ -45,23 +51,29 @@
                 android:id="@+id/priceMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="52dp"
                 android:text="Price"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#222222"
+                app:layout_constraintBottom_toBottomOf="@+id/menuFoodImage"
+                app:layout_constraintStart_toStartOf="@+id/foodNameMenu"
+                app:layout_constraintTop_toBottomOf="@+id/foodNameMenu"
+                app:layout_constraintVertical_bias="0.062" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/menuAddToCart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="5dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/signin_signout_button_design"
+                android:paddingHorizontal="10dp"
                 android:text="Add"
-                app:layout_constraintEnd_toEndOf="@+id/priceMenu"
-                app:layout_constraintStart_toStartOf="@+id/priceMenu"
-                app:layout_constraintTop_toBottomOf="@+id/priceMenu" />
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
