@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
         googleSignInClient = GoogleSignIn.getClient(this,gso)
 
@@ -41,6 +42,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.goToSignup.setOnClickListener {
             val intent = Intent(this,SignupActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.continueWithAdmin.setOnClickListener {
+            val intent = Intent(this,AdminLoginActivity::class.java)
             startActivity(intent)
         }
 
@@ -61,20 +67,18 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(binding.email1.text.toString(), binding.password1.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            val user = auth.currentUser
-                            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                            startActivity(Intent(this@LoginActivity,ChooseLocationActivity::class.java))
+                            SharedPref.initialize(this)
+                            SharedPref.setUserType("User")
+                            finish()
                         } else {
-                            Toast.makeText(
-                                this,
-                                "Authentication failed.",
-                                Toast.LENGTH_SHORT,
-                            ).show()
+                            Toast.makeText(this,"Authentication failed.", Toast.LENGTH_SHORT).show()
                         }
                     }
             }
         }
-
     }
+
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
         if (result.resultCode== RESULT_OK){
@@ -86,7 +90,9 @@ class LoginActivity : AppCompatActivity() {
                     if (it.isSuccessful){
                         Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this,ChooseLocationActivity::class.java))
-
+                        SharedPref.initialize(this)
+                        SharedPref.setUserType("User")
+                        finish()
                     }
                     else{
                         Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
@@ -101,9 +107,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         if (auth.currentUser != null){
             startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }
     }
 }

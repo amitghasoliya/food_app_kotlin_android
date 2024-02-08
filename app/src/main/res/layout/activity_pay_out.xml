@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Profile"
+                android:text="Checkout"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/Primary"
                 android:textSize="22sp"
@@ -61,7 +61,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/edittext_design"
         android:hint="Enter name"
-        android:text="Name"
+        android:text=""
         android:textColorHint="#B8B8B8"
         android:inputType="text"
         android:paddingLeft="15dp"
@@ -84,34 +84,12 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/edittext_design"
         android:hint="Enter address"
-        android:text="Address"
+        android:text=""
         android:textColorHint="#B8B8B8"
         android:inputType="textMultiLine"
         android:paddingLeft="15dp"
         android:textColor="#424242" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:text="Email"
-        android:textColor="#7a7d7a"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_design"
-        android:hint="Enter email"
-        android:text="email@email.com"
-        android:textColorHint="#B8B8B8"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="15dp"
-        android:textColor="#424242" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -131,7 +109,7 @@
         android:background="@drawable/edittext_design"
         android:hint="Enter Phone Number"
         android:textColorHint="#B8B8B8"
-        android:text="9999999999"
+        android:text=""
         android:inputType="number"
         android:paddingLeft="15dp"
         android:textColor="#424242" />
@@ -153,9 +131,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/totalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Amount: 100"
+                android:text="Total Amount: Calculating.."
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

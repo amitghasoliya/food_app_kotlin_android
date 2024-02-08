@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/Primary"
+    tools:context=".AdminSignupActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="755dp"
+        android:layout_marginHorizontal="6dp"
+        android:background="@drawable/background_view"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="750dp"
+        android:background="@drawable/linear_layout_design"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:textColor="#1B1B1B"
+            android:text="Create an account"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:textColor="#7a7d7a"
+                />
+
+            <TextView
+                android:id="@+id/goToLoginAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Sign In"
+                android:textStyle="bold"
+                android:textColor="@color/Primary" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="35dp"
+            android:text="Owner Name"
+            android:textColor="#7a7d7a"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_design"
+            android:hint="Enter owner name"
+            android:textColorHint="#B8B8B8"
+            android:paddingLeft="15dp"
+            android:textColor="#424242" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:text="Restaurant Name"
+            android:textColor="#7a7d7a"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameOfRestaurantAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_design"
+            android:hint="Enter resturant name"
+            android:textColorHint="#B8B8B8"
+            android:paddingLeft="15dp"
+            android:textColor="#424242" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:text="Email"
+            android:textColor="#7a7d7a"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/emailAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_design"
+            android:hint="Enter email"
+            android:textColorHint="#B8B8B8"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="15dp"
+            android:textColor="#424242" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:text="Password"
+            android:textColor="#7a7d7a"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/passwordAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_design"
+            android:hint="Atleast 6 characters"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:textColorHint="#B8B8B8"
+            android:textColor="#4E4E4E" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signupAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/signin_signout_button_design"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="- - - - - - - - - - - - - - - -   "
+                android:textColor="#b3b5b3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:inputType="text"
+                android:text=" Or "
+                android:textColor="#b3b5b3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="   - - - - - - - - - - - - - - - -"
+                android:textColor="#b3b5b3" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/googleAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/edittext_design"
+            android:drawableStart="@drawable/google"
+            android:paddingLeft="25dp"
+            android:textAllCaps="false"
+            android:paddingRight="25dp"
+            android:text="Continue with Google"
+            android:textSize="16sp"
+            android:textColor="#1B1B1B" />
+        />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

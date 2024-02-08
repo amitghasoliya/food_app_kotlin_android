@@ -81,7 +81,6 @@
             android:background="@drawable/edittext_design"
             android:hint="Enter name"
             android:textColorHint="#B8B8B8"
-            android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:textColor="#424242" />
 

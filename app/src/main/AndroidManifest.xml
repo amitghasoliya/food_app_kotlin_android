@@ -13,6 +13,41 @@
         android:theme="@style/Theme.FoodApp"
         tools:targetApi="31">
         <activity
+            android:name=".AdminOrderStatus"
+            android:exported="false" />
+        <activity
+            android:name=".RecentOrderItemDetails"
+            android:exported="false" />
+        <activity
+            android:name=".AdminStatusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminPendingOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminAllItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminAddItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".LanguageSelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".detail_activity"
             android:exported="false" />
         <activity

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:outlineSpotShadowColor="#FFB0B0"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/menuFoodImage"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/menuFoodName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:text="Dish Name"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toEndOf="@+id/menuFoodImage"
+                app:layout_constraintTop_toTopOf="@+id/menuFoodImage" />
+
+            <TextView
+                android:id="@+id/menuFoodPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="26dp"
+                android:text="Price"
+                android:textColor="#222222"
+                app:layout_constraintBottom_toBottomOf="@+id/menuFoodImage"
+                app:layout_constraintStart_toStartOf="@+id/menuFoodName"
+                app:layout_constraintTop_toBottomOf="@+id/menuFoodName" />
+
+            <TextView
+                android:id="@+id/cartQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="1"
+                android:textColor="#222222"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/increaseQuantity"
+                app:layout_constraintEnd_toStartOf="@id/increaseQuantity"
+                app:layout_constraintTop_toTopOf="@+id/increaseQuantity" />
+
+            <ImageView
+                android:id="@+id/increaseQuantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/icon_increase"
+                android:text="+"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/decreaseQuantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/icon_decrease"
+                app:layout_constraintBottom_toBottomOf="@+id/cartQuantity"
+                app:layout_constraintEnd_toStartOf="@+id/cartQuantity"
+                app:layout_constraintTop_toTopOf="@+id/cartQuantity" />
+
+            <ImageView
+                android:id="@+id/deleteMenuItem"
+                android:layout_width="22dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/delete"
+                app:layout_constraintEnd_toEndOf="@+id/increaseQuantity"
+                app:layout_constraintStart_toStartOf="@+id/decreaseQuantity"
+                app:layout_constraintTop_toBottomOf="@+id/increaseQuantity" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
