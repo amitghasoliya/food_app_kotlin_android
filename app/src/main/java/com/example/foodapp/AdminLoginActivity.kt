@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.foodapp.databinding.ActivityAdminSignupBinding
+import com.example.foodapp.model.UserModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -74,7 +75,7 @@ class AdminLoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            startActivity(Intent(this@AdminLoginActivity,AdminMainActivity::class.java))
+                            startActivity(Intent(this@AdminLoginActivity,AdminChooseLocationActivity::class.java))
                             SharedPref.initialize(this)
                             SharedPref.setUserType("Admin")
                             finishAffinity()
@@ -95,10 +96,11 @@ class AdminLoginActivity : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account?.idToken,null)
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful){
-                        Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this,AdminMainActivity::class.java))
+                        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+                        database.child("Admin").child(userId)
                         SharedPref.initialize(this)
                         SharedPref.setUserType("Admin")
+                        startActivity(Intent(this,AdminChooseLocationActivity::class.java))
                         finishAffinity()
                     }
                     else{
@@ -106,8 +108,7 @@ class AdminLoginActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-        else{
+        }else{
             Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
         }
     }

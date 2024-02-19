@@ -15,6 +15,7 @@
         android:textSize="26sp"
         android:layout_marginTop="80dp"
         android:text="Choose Location"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +39,7 @@
         android:layout_height="60dp"
         android:layout_marginHorizontal="25dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/signin_signout_button_design"
+        android:background="@drawable/button_signin_signout"
         android:text="Next"
         android:textAllCaps="false"
         android:textColor="@color/white"

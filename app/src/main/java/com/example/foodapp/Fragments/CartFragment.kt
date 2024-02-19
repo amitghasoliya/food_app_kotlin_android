@@ -7,18 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodapp.CartAdapter
+import com.example.foodapp.R
 import com.example.foodapp.databinding.FragmentCartBinding
 import com.example.foodapp.model.CartItems
 import com.example.foodapp.pay_out
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class CartFragment : Fragment() {
+class CartFragment : Fragment(), CartAdapter.onItemClicked {
     private lateinit var binding : FragmentCartBinding
     private lateinit var auth : FirebaseAuth
     private lateinit var database : FirebaseDatabase
@@ -49,7 +55,7 @@ class CartFragment : Fragment() {
     }
 
     private fun getOrderItemDetails() {
-        val orderIdReference = database.reference.child("users").child(userId).child("CartItems")
+        val orderIdReference = database.reference.child("Users").child(userId).child("CartItems")
         val foodName = mutableListOf<String>()
         val foodPrice = mutableListOf<String>()
         val foodImage = mutableListOf<String>()
@@ -57,9 +63,9 @@ class CartFragment : Fragment() {
 
         orderIdReference.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                foodQuantities.clear()
                 for (foodSnapshot in snapshot.children){
                     val orderItems = foodSnapshot.getValue(CartItems::class.java)
-
                     orderItems?.foodName?.let { foodName.add(it) }
                     orderItems?.foodPrice?.let { foodPrice.add(it) }
                     orderItems?.foodImage?.let { foodImage.add(it) }
@@ -67,11 +73,9 @@ class CartFragment : Fragment() {
                 }
                 sendDetailsToPayOutActivity(foodName, foodPrice, foodImage, foodQuantities)
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
 
@@ -81,7 +85,7 @@ class CartFragment : Fragment() {
         foodImage: MutableList<String>,
         foodQuantities: MutableList<Int>
     ) {
-        if(isAdded && context!=null){
+        if(isAdded && context!=null && foodImage.isNotEmpty()){
             val intent = Intent(requireContext(), pay_out::class.java)
             intent.putExtra("foodName", foodName as ArrayList<String>)
             intent.putExtra("foodPrice", foodPrice as ArrayList<String>)
@@ -94,7 +98,7 @@ class CartFragment : Fragment() {
     private fun retrieveItems() {
         database = FirebaseDatabase.getInstance()
         userId = auth.currentUser?.uid?:""
-        val foodRef = database.reference.child("users").child(userId).child("CartItems")
+        val foodRef = database.reference.child("Users").child(userId).child("CartItems")
         foodNames = mutableListOf()
         foodPrices = mutableListOf()
         foodImagesUri = mutableListOf()
@@ -118,9 +122,18 @@ class CartFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        cartAdapter = CartAdapter(foodNames, foodPrices,foodImagesUri,foodQuantity,requireContext())
+        if (foodNames.isNotEmpty()){
+            binding.emptyCartText.visibility = View.INVISIBLE
+            binding.proceed.visibility = View.VISIBLE
+        }
+        cartAdapter = CartAdapter(foodNames, foodPrices,foodImagesUri,foodQuantity,requireContext(), this)
         binding.cartRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.cartRecycler.adapter = cartAdapter
+    }
+
+    override fun onRemoveAllCartItems() {
+        binding.emptyCartText.visibility = View.VISIBLE
+        binding.proceed.visibility = View.INVISIBLE
     }
 
 }

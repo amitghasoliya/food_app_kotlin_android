@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginHorizontal="2dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="2dp"
-        android:layout_marginBottom="2dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_design"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,58 +20,146 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/pendingOrderFoodImage"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background"
+            <LinearLayout
+                android:id="@+id/layoutForImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/item_image_layout"
+                android:orientation="vertical"
+                android:padding="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/pendingOrderFoodName"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/pendingOrderFoodImage"
+                    android:layout_width="100dp"
+                    android:layout_height="110dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/Rounded" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="30dp"
-                android:text="Food Name"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/pendingOrderFoodImage"
-                app:layout_constraintTop_toTopOf="@+id/pendingOrderFoodImage" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/layoutForImage"
+                app:layout_constraintTop_toTopOf="@+id/layoutForImage">
+
+                <TextView
+                    android:id="@+id/pendingOrderFoodQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="4"
+                    android:text="Quantity"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/pendingOrderFoodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:maxLines="4"
+                    android:paddingRight="5dp"
+                    android:text="Food Name"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/pendingOrderFoodQuantity"
+                android:id="@+id/pendingOrderFoodPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="30dp"
-                android:text="Quantity"
+                android:text="Price"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/pendingOrderFoodImage"
-                app:layout_constraintEnd_toEndOf="@+id/pendingOrderFoodName"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/pendingOrderFoodName"
-                app:layout_constraintTop_toBottomOf="@+id/pendingOrderFoodName" />
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="3dp"
+                app:layout_constraintBottom_toTopOf="@+id/pendingOrderAcceptButton"
+                app:layout_constraintEnd_toEndOf="@+id/pendingOrderAcceptButton"
+                app:layout_constraintHorizontal_bias="0.0"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/pendingOrderAcceptButton"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/buy_again_button"
+                android:layout_margin="10dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/button_buy_again"
                 android:paddingHorizontal="15dp"
                 android:text="Accept"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/line" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:text="Customer Details"
+            android:textColor="@color/Primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/customerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginTop="3dp"
+                android:text="Customer Name:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/customerPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:inputType="text"
+                android:text="Phone"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/customerAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="8dp"
+                android:inputType="textMultiLine"
+                android:text="Address"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

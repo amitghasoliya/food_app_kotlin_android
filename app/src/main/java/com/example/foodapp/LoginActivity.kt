@@ -1,6 +1,5 @@
 package com.example.foodapp
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,12 +14,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
-
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.continueWithAdmin.setOnClickListener {
-            val intent = Intent(this,AdminLoginActivity::class.java)
+            val intent = Intent(this,AdminLockScreenActivity::class.java)
             startActivity(intent)
         }
 
@@ -88,13 +88,11 @@ class LoginActivity : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account?.idToken,null)
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful){
-                        Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this,ChooseLocationActivity::class.java))
                         SharedPref.initialize(this)
                         SharedPref.setUserType("User")
                         finish()
-                    }
-                    else{
+                    }else{
                         Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
                     }
                 }

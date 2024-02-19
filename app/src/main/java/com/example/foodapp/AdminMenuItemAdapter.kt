@@ -33,7 +33,7 @@ class AdminMenuItemAdapter(
         fun bind(position: Int) {
             binding.apply {
                 menuFoodName.text = menuList[position].foodName
-                menuFoodPrice.text = menuList[position].foodPrice
+                menuFoodPrice.text = "₹${ menuList[position].foodPrice }"
                 Glide.with(context).load(Uri.parse(menuList[position].foodImage)).into(menuFoodImage)
                 
                 deleteMenuItem.setOnClickListener {
@@ -41,12 +41,5 @@ class AdminMenuItemAdapter(
                 }
             }
         }
-
-        private fun deleteItem(position: Int) {
-            menuList.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, menuList.size)
-        }
-
     }
 }

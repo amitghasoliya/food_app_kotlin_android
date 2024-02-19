@@ -3,5 +3,20 @@
     <style name="Base.Theme.FoodApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColorPrimary">#424242</item>
+        <item name="android:textColorHint">#CDCDCD</item>
+        <item name="colorSecondaryContainer">#f0f0f0</item>
+        <item name="colorAccent">@color/Primary</item>
+
+        //for radio button
+        <item name="colorPrimary">@color/Primary</item>
+        <item name="colorOnSurfaceVariant">@color/hintColor</item>
+    </style>
+
+    <style name="Rounded" parent="">
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+        <item name="cornerSizeBottomLeft">12dp</item>
+        <item name="cornerSizeBottomRight">12dp</item>
     </style>
 </resources>

@@ -1,124 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/lightGrey"
+    android:orientation="vertical"
     tools:context=".Fragments.HistoryFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="25dp"
-            android:textColor="@color/black"
-            android:text="Recent Buy"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:text="Recent Order"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="2dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="15dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView2">
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Recent Order"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/recentOrderItem"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recentOrderItem" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recentOrderItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="15dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView2">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/items_background">
+
+                    <TextView
+                        android:id="@+id/restName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Restaurant Name"
+                        android:textColor="@color/Primary"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutForImageHistory"
+                        android:layout_width="100dp"
+                        android:layout_height="110dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/item_image_layout"
+                        android:orientation="vertical"
+                        android:paddingVertical="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/restName">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/buyAgainFoodImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            app:shapeAppearanceOverlay="@style/Rounded"
+                            tools:srcCompat="@tools:sample/avatars" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintStart_toEndOf="@+id/layoutForImageHistory"
+                        app:layout_constraintTop_toTopOf="@+id/layoutForImageHistory">
+
+                        <TextView
+                            android:id="@+id/buyAgainFoodQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="4"
+                            android:text="Quantity"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/buyAgainFoodName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:maxLines="4"
+                            android:paddingRight="5dp"
+                            android:text="Food Name"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/orderStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:maxLines="4"
+                        android:text="Order Status"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/recievedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/button_buy_again"
+                        android:paddingHorizontal="15dp"
+                        android:text="Recieved"
+                        android:layout_marginTop="12dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/recentOrderItem"
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <ImageView
-                    android:id="@+id/buyAgainFoodImage"
-                    android:layout_width="100dp"
-                    android:layout_height="0dp"
-                    android:src="@drawable/chowmein"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/buyAgainFoodName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="30dp"
-                    android:textColor="@color/black"
-                    android:text="Food Name"
-                    app:layout_constraintStart_toEndOf="@+id/buyAgainFoodImage"
-                    app:layout_constraintTop_toTopOf="@+id/buyAgainFoodImage" />
-
-                <TextView
-                    android:id="@+id/buyAgainFoodPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="30dp"
-                    android:text="Price"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/buyAgainFoodImage"
-                    app:layout_constraintEnd_toEndOf="@+id/buyAgainFoodName"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/buyAgainFoodName"
-                    app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodName" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/recievedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="@drawable/buy_again_button"
-                    android:paddingHorizontal="15dp"
-                    android:text="Recieved"
-                    android:textAllCaps="false"
-                    android:visibility="invisible"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
-            android:text="History"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/lightGrey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recentOrderItem" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+                android:text="History"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recentOrderItem" />
+            <TextView
+                android:id="@+id/noHistoryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Order History"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recycler" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

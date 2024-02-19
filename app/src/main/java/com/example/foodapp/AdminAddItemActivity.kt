@@ -1,5 +1,6 @@
 package com.example.foodapp
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.example.foodapp.databinding.ActivityAdminAddItemBinding
 import com.example.foodapp.databinding.ActivityAdminMainBinding
 import com.example.foodapp.model.AllMenu
+import com.example.foodapp.model.MenuItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -34,12 +36,21 @@ class AdminAddItemActivity : AppCompatActivity() {
             pickImage.launch("image/*")
         }
 
+        binding.apply {
+            setSupportActionBar(addItemToolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setTitle(null)
+            addItemToolbar.setNavigationOnClickListener {
+                finish()
+            }
+        }
+
         binding.addItemButtonAdmin.setOnClickListener {
             foodName = binding.addFoodNameAdmin.text.toString().trim()
             foodPrice = binding.addFoodPriceAdmin.text.toString().trim()
-            if (!foodName.isBlank() || foodPrice.isBlank()){
+            if (!foodName.isBlank() || !foodPrice.isBlank()){
                 uploadData()
-                Toast.makeText(this, "Item Add Successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Uploading.. Please wait", Toast.LENGTH_SHORT).show()
             }
             else{
                 Toast.makeText(this, "Fill all details ", Toast.LENGTH_SHORT).show()
@@ -48,7 +59,10 @@ class AdminAddItemActivity : AppCompatActivity() {
     }
 
     private fun uploadData() {
-        val menuRef = database.getReference("menu")
+        SharedPref.initialize(this)
+        val cityName = SharedPref.getUserLocation().toString()
+
+        val menuRef = database.getReference(cityName)
         val newItemKey = menuRef.push().key
 
         if (foodImage != null){
@@ -58,15 +72,16 @@ class AdminAddItemActivity : AppCompatActivity() {
             uploadTask.addOnSuccessListener {
                 imageRef.downloadUrl.addOnSuccessListener {
                     downloadUrl ->
-                    val newItem = AllMenu(newItemKey,foodName, foodPrice, downloadUrl.toString())
+                    val newItem = AllMenu(newItemKey,foodName, foodPrice, downloadUrl.toString(),0)
                     newItemKey?.let {
                         key ->
-                        menuRef.child(key).setValue(newItem).addOnSuccessListener {
+                        menuRef.child("Menu").child(key).setValue(newItem).addOnSuccessListener {
                             Toast.makeText(this, "Data uploaded", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this,AdminMainActivity::class.java))
+                            finish()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Data upload failed", Toast.LENGTH_SHORT).show()
                         }
-                            .addOnFailureListener {
-                                Toast.makeText(this, "Data upload failed", Toast.LENGTH_SHORT).show()
-                            }
                     }
                 }
             }.addOnFailureListener {
@@ -76,11 +91,11 @@ class AdminAddItemActivity : AppCompatActivity() {
             Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
         }
     }
+
     val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()){ uri ->
         if (uri != null){
             binding.addFoodImageAdmin.setImageURI(uri)
             foodImage = uri
         }
-
     }
 }

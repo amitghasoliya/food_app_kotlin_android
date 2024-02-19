@@ -1,45 +1,43 @@
-package com.example.foodapp.Fragments
+package com.example.foodapp
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodapp.MenuAdapter
-import com.example.foodapp.databinding.FragmentSearchBinding
+import com.example.foodapp.databinding.ActivitySearchBinding
 import com.example.foodapp.model.MenuItems
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class SearchFragment : Fragment() {
-    private lateinit var binding: FragmentSearchBinding
+class SearchActivity : AppCompatActivity(){
+    private lateinit var binding: ActivitySearchBinding
     private lateinit var adapter: MenuAdapter
     private lateinit var database: FirebaseDatabase
     private val originalMenuItems = mutableListOf<MenuItems>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.lightGrey)
         super.onCreate(savedInstanceState)
-    }
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSearchBinding.inflate(inflater,container,false)
-
+        binding.searchView.isIconified = false
         retrieveMenuItem()
         setupSearchView()
-        return binding.root
     }
 
     private fun retrieveMenuItem() {
+        SharedPref.initialize(this)
+        val cityName = SharedPref.getUserLocation().toString()
+
         database = FirebaseDatabase.getInstance()
-        val foodRef = database.reference.child("menu")
-        foodRef.addListenerForSingleValueEvent(object: ValueEventListener{
+        val foodRef = database.reference.child(cityName).child("Menu")
+        foodRef.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (foodSnapshot in snapshot.children){
                     val menuItem = foodSnapshot.getValue(MenuItems::class.java)
@@ -47,11 +45,9 @@ class SearchFragment : Fragment() {
                 }
                 showAllMenu()
             }
-
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(this@SearchActivity, error.toString(), Toast.LENGTH_SHORT).show()
             }
-
         })
     }
 
@@ -61,8 +57,12 @@ class SearchFragment : Fragment() {
     }
 
     private fun setAdapter(filteredMenuItem: List<MenuItems>) {
-        adapter = MenuAdapter(filteredMenuItem,requireContext())
-        binding.recyclerSearch.layoutManager = LinearLayoutManager(requireContext())
+        val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.line)!!)
+        binding.recyclerSearch.addItemDecoration(dividerItemDecoration)
+
+        adapter = MenuAdapter(filteredMenuItem,this)
+        binding.recyclerSearch.layoutManager = LinearLayoutManager(this)
         binding.recyclerSearch.adapter = adapter
     }
 
@@ -72,7 +72,6 @@ class SearchFragment : Fragment() {
                 filterMenuItems(query)
                 return true
             }
-
             override fun onQueryTextChange(newText: String): Boolean {
                 filterMenuItems(newText)
                 return true
@@ -81,10 +80,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun filterMenuItems(query: String){
-        val filterdMenuItems = originalMenuItems.filter {
+        val filteredMenuItems = originalMenuItems.filter {
             it.foodName?.contains(query, ignoreCase = true) == true
         }
-        setAdapter(filterdMenuItems)
+        setAdapter(filteredMenuItems)
     }
 
 }

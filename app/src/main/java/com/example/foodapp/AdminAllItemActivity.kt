@@ -24,13 +24,16 @@ class AdminAllItemActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         databaseReference = FirebaseDatabase.getInstance().reference
-        retreiveMenuItem()
+        retrieveMenuItem()
         
     }
 
-    private fun retreiveMenuItem() {
+    private fun retrieveMenuItem() {
+        SharedPref.initialize(this)
+        val cityName = SharedPref.getUserLocation().toString()
+
         database = FirebaseDatabase.getInstance()
-        val foodRef = databaseReference.child("menu")
+        val foodRef = databaseReference.child(cityName).child("Menu")
 
         foodRef.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -57,9 +60,12 @@ class AdminAllItemActivity : AppCompatActivity() {
     }
 
     private fun deleteMenuItems(position: Int) {
+        SharedPref.initialize(this)
+        val cityName = SharedPref.getUserLocation().toString()
+
         val menuItemToDelete =  menuItems[position]
         val menuItemKey = menuItemToDelete.key
-        val foodMenuRef = database.reference.child("menu").child(menuItemKey!!)
+        val foodMenuRef = database.reference.child(cityName).child("Menu").child(menuItemKey!!)
         foodMenuRef.removeValue().addOnCompleteListener { task ->
             if (task.isSuccessful){
                 menuItems.removeAt(position)

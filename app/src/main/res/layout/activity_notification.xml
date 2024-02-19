@@ -7,28 +7,52 @@
     android:background="@color/white"
     tools:context=".notification_activity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/notificationToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/arrow_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Notifications"
+            android:layout_gravity="center"
+            android:textColor="@color/Primary"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/noNotifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Notifications"
-        android:textColor="@color/Primary"
-        android:textSize="20sp"
+        android:text="You haven't any notifications"
+        android:textSize="16sp"
+        android:textColor="@color/grey_font"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/swipeRefreshNotifications"
+        app:layout_constraintStart_toStartOf="@+id/swipeRefreshNotifications"
+        app:layout_constraintTop_toBottomOf="@+id/notificationToolbar" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notificationRecycler"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
+        app:layout_constraintTop_toBottomOf="@+id/notificationToolbar">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notificationRecycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

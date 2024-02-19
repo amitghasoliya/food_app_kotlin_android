@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,162 +8,179 @@
     android:background="@color/white"
     tools:context=".AdminProfileActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/adminProfileToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lightGrey"
+        app:navigationIcon="@drawable/arrow_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <TextView
-            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/Primary"
+            android:layout_marginTop="15dp"
             android:text="Admin Profile"
-            android:layout_gravity="center_horizontal"
-            android:textSize="22sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
-            android:text="Your Name"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/nameAdminProfile"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edittext_design"
-            android:hint="Enter name"
-            android:inputType="text"
-            android:paddingLeft="15dp"
-            android:textColor="#424242"
-            android:textColorHint="#B8B8B8" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Email"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/emailAdminProfile"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edittext_design"
-            android:paddingLeft="15dp"
-            android:textColor="#424242"
-            android:textColorHint="#B8B8B8" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Phone"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/phoneAdminProfile"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edittext_design"
-            android:hint="Enter Phone Number"
-            android:inputType="number"
-            android:paddingLeft="15dp"
-            android:textColor="#424242"
-            android:textColorHint="#B8B8B8" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Address"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/addressAdminProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edittext_design"
-            android:hint="Enter address"
-            android:inputType="textMultiLine"
-            android:paddingLeft="15dp"
-            android:textColor="#424242"
-            android:textColorHint="#B8B8B8" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Password"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/passwordAdminProfile"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/edittext_design"
-            android:hint="Enter Phone Number"
-            android:inputType="textPassword"
-            android:paddingLeft="15dp"
-            android:text="9999999999"
-            android:textColor="#424242"
-            android:textColorHint="#B8B8B8" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/saveAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginHorizontal="25dp"
-            android:background="@drawable/button_design"
-            android:text="Save"
-            android:textAllCaps="false"
+            android:layout_gravity="center"
             android:textColor="@color/Primary"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button2" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signoutAdmin"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/signin_signout_button_design"
-            android:text="Log Out"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button2" />
-    </LinearLayout>
-</ScrollView>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Your Name"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/nameAdminProfile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter name"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColor="#424242"
+                android:textColorHint="#B8B8B8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Restaurant Name"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/restaurantAdminProfile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter Restaurant Name"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColor="#424242"
+                android:textColorHint="#B8B8B8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Email"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/emailAdminProfile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:enabled="false"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/edittext_design"
+                android:paddingLeft="15dp"
+                android:textColor="#9D9D9D"
+                android:textColorHint="#B8B8B8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phoneAdminProfile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter Phone Number"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                android:textColor="#424242"
+                android:textColorHint="#B8B8B8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Address"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/addressAdminProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter address"
+                android:inputType="textMultiLine"
+                android:paddingLeft="15dp"
+                android:textColor="#424242"
+                android:textColorHint="#B8B8B8" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/saveAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="25dp"
+                android:background="@drawable/button_save"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/Primary"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signoutAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_signin_signout"
+                android:text="Log Out"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button2" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

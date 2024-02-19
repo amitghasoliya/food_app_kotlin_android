@@ -78,7 +78,7 @@
             android:id="@+id/detailAddToCart"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:background="@drawable/signin_signout_button_design"
+            android:background="@drawable/button_signin_signout"
             android:layout_marginRight="30dp"
             android:textColor="@color/white"
             android:paddingHorizontal="20dp"

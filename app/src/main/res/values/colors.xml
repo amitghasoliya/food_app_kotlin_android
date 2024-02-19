@@ -4,6 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Primary">#c7313d</color>
     <color name="hintColor">#B8B8B8</color>
+    <color name="lightGrey">#F6F6F6</color>
     <color name="adminPrimary">#3F51B5</color>
+    <color name="green">#0EAB14</color>
 
 </resources>

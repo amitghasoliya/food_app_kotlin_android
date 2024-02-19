@@ -9,7 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.foodapp.databinding.ActivitySignupBinding
-import com.example.foodapp.model.UserModel
+import com.example.foodapp.model.Users
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -68,7 +68,10 @@ class SignupActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { it ->
                         if (it.isSuccessful) {
-                            saveUserData()
+                            email = binding.email.text.toString().trim()
+                            username = binding.name.text.toString().trim()
+                            password = binding.password.text.toString().trim()
+                            saveUserData(username,email,password)
                             Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this,ChooseLocationActivity::class.java))
                             SharedPref.initialize(this)
@@ -94,10 +97,9 @@ class SignupActivity : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account?.idToken,null)
                 auth.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful){
-                        Toast.makeText(this,"Successful",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this,ChooseLocationActivity::class.java))
                         SharedPref.initialize(this)
                         SharedPref.setUserType("User")
+                        startActivity(Intent(this,ChooseLocationActivity::class.java))
                         finish()
                     }else{
                         Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
@@ -109,13 +111,10 @@ class SignupActivity : AppCompatActivity() {
             Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
         }
     }
-    private fun saveUserData() {
-        username = binding.name.text.toString().trim()
-        email = binding.email.text.toString().trim()
-        password = binding.password.text.toString().trim()
-        val user= UserModel(username,email,password)
+    private fun saveUserData(username: String, email:String, password:String) {
+        val user= Users(username,email,password)
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        database.child("users").child(userId).setValue(user)
+        database.child("Users").child(userId).setValue(user)
     }
 
 }

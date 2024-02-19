@@ -8,7 +8,7 @@ class SharedPref {
         private const val PREF_NAME = "sharedcheckLogin"
         private const val UserType = "User"
         private const val UserLocation = "null"
-        private const val isUserLogined = "false"
+        private const val restName = "MCD"
         private lateinit var sharedPreferences: SharedPreferences
 
         fun initialize(context: Context) {
@@ -22,7 +22,7 @@ class SharedPref {
         }
 
         fun getUserType(): String? {
-            return sharedPreferences.getString(UserType, null)
+            return sharedPreferences.getString(UserType, "User")
         }
 
         fun setUserLocation(name: String) {
@@ -31,12 +31,13 @@ class SharedPref {
             editor.apply()
         }
 
-        fun isLogin(): Boolean?{
-            return sharedPreferences.getBoolean(isUserLogined, false)
+        fun getRestName(): String? {
+            return sharedPreferences.getString(restName,"Restaurant")
         }
-        fun setLogin() {
+
+        fun setRestName(name: String) {
             val editor = sharedPreferences.edit()
-            editor.putBoolean(isUserLogined, true)
+            editor.putString(restName, name)
             editor.apply()
         }
 

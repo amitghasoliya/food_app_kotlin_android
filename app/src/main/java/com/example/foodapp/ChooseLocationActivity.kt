@@ -14,12 +14,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class ChooseLocationActivity : AppCompatActivity() {
+    private lateinit var databaseRef: DatabaseReference
 
     val binding : ActivityChooseLocationBinding by lazy {
         ActivityChooseLocationBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val locationList = arrayOf("Gurugram", "Delhi", "Jhajjar", "Faridabad")
@@ -34,9 +36,11 @@ class ChooseLocationActivity : AppCompatActivity() {
                         SharedPref.initialize(this@ChooseLocationActivity)
                         SharedPref.setUserLocation(city)
                         val intent = Intent(this@ChooseLocationActivity,MainActivity::class.java)
+                        databaseRef = FirebaseDatabase.getInstance().getReference("users")
                         startActivity(intent)
                     }
                 }
+
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("Not yet implemented")

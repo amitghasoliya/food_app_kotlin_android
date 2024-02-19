@@ -14,7 +14,10 @@ class OrderDetail() : Parcelable{
     var address: String?= null
     var totalPrice: String?= null
     var phoneNumber: String?= null
+    var restaurantId: String?= null
+    var restaurantName: String?= null
     var orderAccepted: Boolean?= false
+    var orderDispatched: Boolean?= false
     var paymentReceived: Boolean?= false
     var itemPushKey: String ?= null
     var currentTime: Long = 0
@@ -25,7 +28,10 @@ class OrderDetail() : Parcelable{
         address = parcel.readString()
         totalPrice = parcel.readString()
         phoneNumber = parcel.readString()
+        restaurantId = parcel.readString()
+        restaurantName = parcel.readString()
         orderAccepted = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+        orderDispatched = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
         paymentReceived = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
         itemPushKey = parcel.readString()
         currentTime = parcel.readLong()
@@ -41,8 +47,11 @@ class OrderDetail() : Parcelable{
         address: String,
         phone: String,
         totalAmount: String,
+        restaurantId: String,
+        restaurantName: String,
         b: Boolean,
         b1: Boolean,
+        b2: Boolean,
         itemPushKey: String?,
         time: Long
     ): this(){
@@ -54,9 +63,12 @@ class OrderDetail() : Parcelable{
         this.foodQuantities = foodQuantity
         this.address = address
         this.phoneNumber = phone
+        this.restaurantId = restaurantId
+        this.restaurantName = restaurantName
         this.totalPrice = totalAmount
         this.orderAccepted = b
-        this.paymentReceived = b1
+        this.orderDispatched = b1
+        this.paymentReceived = b2
         this.itemPushKey = itemPushKey
         this.currentTime = time
     }
@@ -67,7 +79,10 @@ class OrderDetail() : Parcelable{
         parcel.writeString(address)
         parcel.writeString(totalPrice)
         parcel.writeString(phoneNumber)
+        parcel.writeValue(restaurantId)
+        parcel.writeValue(restaurantName)
         parcel.writeValue(orderAccepted)
+        parcel.writeValue(orderDispatched)
         parcel.writeValue(paymentReceived)
         parcel.writeString(itemPushKey)
         parcel.writeLong(currentTime)

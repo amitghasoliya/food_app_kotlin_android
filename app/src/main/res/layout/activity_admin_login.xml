@@ -10,179 +10,186 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="608dp"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="6dp"
         android:background="@drawable/background_view"
         app:layout_constraintBottom_toBottomOf="@+id/viewBlockAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewBlockAdmin" />
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/viewBlockAdmin"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:background="@drawable/linear_layout_design"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:textColor="#1B1B1B"
-            android:text="Sign-in"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't have an account?"
-                android:textColor="#7a7d7a"
-                />
-
-            <TextView
-                android:id="@+id/goToSignupAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Register here"
-                android:textStyle="bold"
-                android:textColor="@color/Primary" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="35dp"
-            android:text="Your Email"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/email1Admin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edittext_design"
-            android:hint="Enter email"
-            android:textColorHint="#B8B8B8"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="15dp"
-            android:textColor="#424242" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="15dp"
-            android:text="Password"
-            android:textColor="#7a7d7a"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/password1Admin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edittext_design"
-            android:hint="Enter password"
-            android:textColorHint="#B8B8B8"
-            android:inputType="textPassword"
-            android:paddingLeft="15dp"
-            android:textColor="#4E4E4E" />
-
-        <TextView
-            android:id="@+id/forgotPasswordAdmin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
-            android:text="Forgot password?"
-            android:textColor="#ff6969" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/signin_signout_button_design"
-            android:text="Sign In"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="- - - - - - - - - - - - - - - -   "
-                android:textColor="#b3b5b3" />
+            android:background="@drawable/linear_layout_design"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:inputType="text"
-                android:text=" Or "
-                android:textColor="#b3b5b3" />
+                android:layout_marginTop="40dp"
+                android:textColor="#1B1B1B"
+                android:text="Sign-in"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't have an account?"
+                    android:textColor="#7a7d7a"
+                    />
+
+                <TextView
+                    android:id="@+id/goToSignupAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Register here"
+                    android:textStyle="bold"
+                    android:textColor="@color/Primary" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="   - - - - - - - - - - - - - - - -"
-                android:textColor="#b3b5b3" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+                android:text="Your Email"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/email1Admin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter email"
+                android:textColorHint="#B8B8B8"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="15dp"
+                android:textColor="#424242" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:text="Password"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/password1Admin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter password"
+                android:textColorHint="#B8B8B8"
+                android:inputType="textPassword"
+                android:paddingLeft="15dp"
+                android:textColor="#4E4E4E" />
+
+            <TextView
+                android:id="@+id/forgotPasswordAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:text="Forgot password?"
+                android:textColor="#ff6969" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_signin_signout"
+                android:text="Sign In"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="- - - - - - - - - - - - - - - -   "
+                    android:textColor="#b3b5b3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:inputType="text"
+                    android:text=" Or "
+                    android:textColor="#b3b5b3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="   - - - - - - - - - - - - - - - -"
+                    android:textColor="#b3b5b3" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/googleAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edittext_design"
+                android:drawableStart="@drawable/icon_google"
+                android:paddingLeft="25dp"
+                android:textAllCaps="false"
+                android:paddingRight="25dp"
+                android:text="Continue with Google"
+                android:textSize="16sp"
+                android:textColor="#1B1B1B" />
+            />
+
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/googleAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/edittext_design"
-            android:drawableStart="@drawable/google"
-            android:paddingLeft="25dp"
-            android:textAllCaps="false"
-            android:paddingRight="25dp"
-            android:text="Continue with Google"
-            android:textSize="16sp"
-            android:textColor="#1B1B1B" />
-        />
-
-    </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/continueWithUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Continue with User id >>"
+        android:text="Switch to User >>"
         android:layout_margin="15dp"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -192,14 +199,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Food App"
+        android:text="Admin Profile"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/viewBlockAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/continueWithUser" />
 </androidx.constraintlayout.widget.ConstraintLayout>

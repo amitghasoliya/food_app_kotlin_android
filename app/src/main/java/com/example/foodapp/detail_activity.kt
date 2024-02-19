@@ -9,9 +9,6 @@ import com.example.foodapp.databinding.ActivityDetailBinding
 class detail_activity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        val windowInsetController = ViewCompat.getWindowInsetsController(window.decorView)
-        windowInsetController?.isAppearanceLightStatusBars = true
 
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -28,6 +25,5 @@ class detail_activity : AppCompatActivity() {
         binding.detailImage.setImageResource(image)
         binding.detailFoodName.text = name
         binding.detailPrice.text = price
-
     }
 }

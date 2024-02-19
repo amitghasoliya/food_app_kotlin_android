@@ -15,16 +15,18 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class CartAdapter(private val cartItems: MutableList<String>, private val cartItemPrice: MutableList<String>, private val cartImage: MutableList<String>, private val cartQuantity: MutableList<Int>, private val context: Context) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class CartAdapter(private val cartItems: MutableList<String>, private val cartItemPrice: MutableList<String>, private val cartImage: MutableList<String>, private val cartQuantity: MutableList<Int>,private val context: Context, private val OnItemClicked: onItemClicked) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     private val auth = FirebaseAuth.getInstance()
 
+    interface onItemClicked {
+        fun onRemoveAllCartItems()
+    }
     init {
         val database = FirebaseDatabase.getInstance()
         val userId = auth.currentUser?.uid?:""
-        val cartItemNumber = cartItems.size
-        itemQuantities = IntArray(cartItemNumber){1}
-        cartItemReference = database.reference.child("users").child(userId).child("CartItems")
+        itemQuantities = cartQuantity.toIntArray()
+        cartItemReference = database.reference.child("Users").child(userId).child("CartItems")
     }
     companion object{
         private var itemQuantities : IntArray = intArrayOf()
@@ -49,14 +51,12 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
     }
 
     inner class CartViewHolder(private val binding: CartItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(position: Int) {
             binding.apply {
-                val quantity = itemQuantities[position]
                 cartFoodName.text = cartItems[position]
-                cartFoodPrice.text = cartItemPrice[position]
+                cartFoodPrice.text = "₹${cartItemPrice[position]}"
                 Glide.with(context).load(Uri.parse(cartImage[position])).into(cartFoodImage)
-                cartQuantity.text = quantity.toString()
+                cartQuantity.text = itemQuantities[position].toString()
                 decreaseQuantity.setOnClickListener {
                     decreaseQuan(position)
                 }
@@ -76,6 +76,7 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
                 itemQuantities[position]--
                 cartQuantity[position] = itemQuantities[position]
                 binding.cartQuantity.text = itemQuantities[position].toString()
+                updateQuantities(position)
             }
             else{
                 deleteItem(position)
@@ -86,6 +87,15 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
                 itemQuantities[position]++
                 cartQuantity[position] = itemQuantities[position]
                 binding.cartQuantity.text = itemQuantities[position].toString()
+                updateQuantities(position)
+            }
+        }
+        private fun updateQuantities(position: Int){
+            getUniqueKeyAtPosition(position){uniqueKey ->
+                if (uniqueKey != null){
+                    cartItemReference.child(uniqueKey).child("foodQuantity").setValue(
+                        itemQuantities[position])
+                }
             }
         }
         private fun deleteItem(position: Int){
@@ -98,21 +108,20 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
         }
 
         private fun removeItem(position: Int, uniqueKey: String) {
-            if (uniqueKey != null){
-                cartItemReference.child(uniqueKey).removeValue().addOnSuccessListener {
-                    cartItems.removeAt(position)
-                    cartImage.removeAt(position)
-                    cartItemPrice.removeAt(position)
-                    cartQuantity.removeAt(position)
-                    Toast.makeText(context, "Item Deleted", Toast.LENGTH_SHORT).show()
-
-                    // update item quantities
-                    itemQuantities = itemQuantities.filterIndexed { index, i -> index != position  }.toIntArray()
-                    notifyItemRemoved(position)
-                    notifyItemRangeChanged(position, cartItems.size)
-                }.addOnFailureListener {
-                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            cartItemReference.child(uniqueKey).removeValue().addOnSuccessListener {
+                cartItems.removeAt(position)
+                cartImage.removeAt(position)
+                cartItemPrice.removeAt(position)
+                cartQuantity.removeAt(position)
+                if (cartItems.isEmpty()){
+                    OnItemClicked.onRemoveAllCartItems()
                 }
+                // update item quantities
+                itemQuantities = itemQuantities.filterIndexed { index, i -> index != position  }.toIntArray()
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, cartItems.size)
+            }.addOnFailureListener {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -120,7 +129,6 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
             cartItemReference.addListenerForSingleValueEvent(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     var uniqueKey: String ?= null
-
                     snapshot.children.forEachIndexed{index, dataSnapshot ->
                         if (index == positionRetrieve){
                             uniqueKey = dataSnapshot.key
@@ -129,14 +137,10 @@ class CartAdapter(private val cartItems: MutableList<String>, private val cartIt
                     }
                     onComplete(uniqueKey)
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-
             })
         }
     }
-
-
 }

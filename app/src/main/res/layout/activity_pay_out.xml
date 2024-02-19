@@ -1,169 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".pay_out">
 
-
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/checkoutToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/backButton"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/arrow_back" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Checkout"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/Primary"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="20dp"
-        android:text="Your Name"
-        android:textColor="#7a7d7a"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_design"
-        android:hint="Enter name"
-        android:text=""
-        android:textColorHint="#B8B8B8"
-        android:inputType="text"
-        android:paddingLeft="15dp"
-        android:textColor="#424242" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:text="Address"
-        android:textColor="#7a7d7a"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_design"
-        android:hint="Enter address"
-        android:text=""
-        android:textColorHint="#B8B8B8"
-        android:inputType="textMultiLine"
-        android:paddingLeft="15dp"
-        android:textColor="#424242" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:text="Phone"
-        android:textColor="#7a7d7a"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_design"
-        android:hint="Enter Phone Number"
-        android:textColorHint="#B8B8B8"
-        android:text=""
-        android:inputType="number"
-        android:paddingLeft="15dp"
-        android:textColor="#424242" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/arrow_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="25dp"
-            >
+            android:text="Checkout"
+            android:layout_gravity="center"
+            android:textColor="@color/Primary"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Payment Method"
-                android:textColor="#7a7d7a"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/totalAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Amount: Calculating.."
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Cash On Delivery"
-            android:inputType="number"
-            android:paddingLeft="15dp"
-            android:textColor="#424242" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/placeOrder"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginHorizontal="25dp"
-        android:background="@drawable/signin_signout_button_design"
-        android:text="Place Order"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Your Name"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter name"
+                android:text=""
+                android:textColorHint="#B8B8B8"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:textColor="#424242" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:text="Address"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter address"
+                android:textColorHint="#B8B8B8"
+                android:inputType="textMultiLine"
+                android:paddingLeft="15dp"
+                android:textColor="#424242" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:text="Phone"
+                android:textColor="#7a7d7a"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_design"
+                android:hint="Enter Phone Number"
+                android:textColorHint="#B8B8B8"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                android:textColor="#424242" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="25dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Method"
+                    android:textColor="#7a7d7a"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/totalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Amount: Calculating.."
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <RadioButton
+                android:id="@+id/codRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Cash On Delivery"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                android:textColor="#424242" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/placeOrder"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="25dp"
+                android:background="@drawable/button_signin_signout"
+                android:text="Place Order"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -3,9 +3,10 @@ package com.example.foodapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.foodapp.databinding.ActivityAdminProfileBinding
-import com.example.foodapp.model.UserModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,48 +21,55 @@ class AdminProfileActivity : AppCompatActivity() {
     private lateinit var adminRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.lightGrey)
+
         super.onCreate(savedInstanceState)
         binding = ActivityAdminProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        adminRef = database.reference.child("admin")
+        adminRef = database.reference.child("Admin")
 
         binding.saveAdmin.setOnClickListener {
             updateAdminData()
         }
 
+        binding.apply {
+            setSupportActionBar(adminProfileToolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setTitle(null)
+            adminProfileToolbar.setNavigationOnClickListener {
+                finish()
+            }
+        }
         binding.signoutAdmin.setOnClickListener {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
+            GoogleSignIn.getClient(this,gso).signOut()
             SharedPref.initialize(this)
             SharedPref.setUserType("User")
+            SharedPref.setRestName("Restaurant")
             auth.signOut()
-            startActivity(Intent(this, AdminLoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finishAffinity()
         }
         retrieveAdminData()
     }
 
     private fun updateAdminData() {
-        var updateName = binding.nameAdminProfile.text.toString()
-        var updatePassword = binding.passwordAdminProfile.text.toString()
-        var updateEmail = binding.emailAdminProfile.text.toString()
-        var updatePhone = binding.phoneAdminProfile.text.toString()
-        var updateAddress = binding.addressAdminProfile.text.toString()
+        val updateName = binding.nameAdminProfile.text.toString()
+        val updateRestName = binding.restaurantAdminProfile.text.toString()
+        val updatePhone = binding.phoneAdminProfile.text.toString()
+        val updateAddress = binding.addressAdminProfile.text.toString()
 
         val currentUser = auth.currentUser?.uid
         if (currentUser != null){
             val userRef = adminRef.child(currentUser)
             userRef.child("name").setValue(updateName)
-            userRef.child("email").setValue(updateEmail)
-            userRef.child("password").setValue(updatePassword)
+            userRef.child("nameOfRestaurant").setValue(updateRestName)
+            userRef.child("email").setValue(auth.currentUser?.email.toString())
             userRef.child("phone").setValue(updatePhone)
             userRef.child("address").setValue(updateAddress)
-
-            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show()
-            auth.currentUser?.updateEmail(updateEmail)
-            auth.currentUser?.updatePassword(updatePassword)
         }
-
     }
 
     private fun retrieveAdminData() {
@@ -71,12 +79,13 @@ class AdminProfileActivity : AppCompatActivity() {
             userRef.addListenerForSingleValueEvent(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
-                        var ownerName = snapshot.child("name").getValue()
-                        var email = snapshot.child("email").getValue()
-                        var password = snapshot.child("password").getValue()
-                        var address = snapshot.child("address").getValue()
-                        var phone = snapshot.child("phone").getValue()
-                        setData(ownerName,email,password,address,phone)
+                        val ownerName = snapshot.child("name").getValue()
+                        val restaurantName = snapshot.child("nameOfRestaurant").getValue()
+                        SharedPref.initialize(this@AdminProfileActivity)
+                        SharedPref.setRestName(restaurantName.toString())
+                        val address = snapshot.child("address").getValue()
+                        val phone = snapshot.child("phone").getValue()
+                        setData(ownerName,restaurantName,address,phone)
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
@@ -88,14 +97,13 @@ class AdminProfileActivity : AppCompatActivity() {
 
     private fun setData(
         ownerName: Any?,
-        email: Any?,
-        password: Any?,
+        nameOfRestaurant: Any?,
         address: Any?,
         phone: Any?
     ) {
         binding.nameAdminProfile.setText(ownerName.toString())
-        binding.passwordAdminProfile.setText(password.toString())
-        binding.emailAdminProfile.setText(email.toString())
+        binding.emailAdminProfile.setText(auth.currentUser?.email.toString())
+        binding.restaurantAdminProfile.setText(nameOfRestaurant.toString())
         binding.phoneAdminProfile.setText(phone.toString())
         binding.addressAdminProfile.setText(address.toString())
     }
